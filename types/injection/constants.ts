@@ -1,4 +1,5 @@
 export type Content = {
+  appName: string;
   nickName: string;
   fullName: string;
 };

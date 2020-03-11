@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <div class="footer__wrapper">
+    <div class="footer__wrapper main-container">
       <div class="footer__info-container">
         <span class="footer__title">{{ title }}</span>
         <span class="footer__description">{{ description }}</span>
@@ -44,7 +44,7 @@ export default class Footer extends Vue {
 
   title = '2020 Test app gallery';
 
-  description = `Проект разработан ${this.$constants.content.fullName}`;
+  description = `Проект разработал ${this.$constants.content.fullName}`;
 
   get socials(): Social[] {
     return this.$constants.socials;
@@ -64,7 +64,6 @@ export default class Footer extends Vue {
   }
 
   &__wrapper {
-    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -128,9 +127,7 @@ export default class Footer extends Vue {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      margin: 0 auto;
       padding: 20px;
-      width: 100%;
     }
 
     &__info-container {
@@ -179,12 +176,10 @@ export default class Footer extends Vue {
 
   @media (min-width: $screenDesktop) {
     &__wrapper {
-      max-width: 1280px;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      margin: 0 auto;
       padding: 25px 55px 15px;
     }
 
