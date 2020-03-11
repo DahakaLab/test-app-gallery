@@ -1,0 +1,95 @@
+$labelColor: $greenDark;
+$inputBorder: $grayFlash;
+$inputFocusBorder: $greenLighter;
+$inputDisabledBackground: $graySilver;
+$inputDisabledColor: $grayAnother;
+$inputErrorBorder: $redhead;
+
+.ui-input,
+.ui-input-mask {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  $parent: &;
+
+  &--error {
+    .ui-input__label,
+    .ui-input-mask__label {
+      input {
+        border-color: $inputErrorBorder;
+        background-color: $white;
+      }
+    }
+  }
+
+  &--disabled {
+    .ui-input__heading,
+    .ui-input-mask__heading {
+      span {
+        color: $inputDisabledColor;
+      }
+    }
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    & > span {
+      width: auto;
+      font-family: $rotondac;
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.14;
+      letter-spacing: 0.4px;
+      color: $labelColor;
+      margin-bottom: 10px;
+    }
+
+    input {
+      cursor: text;
+      padding: 20px 15px;
+      width: 100%;
+      border-radius: 6px;
+      border: solid 1px $inputBorder;
+      background-color: $white;
+      font-size: 14px;
+      line-height: 1.14;
+      letter-spacing: 0.4px;
+      transition:
+        background-color $baseTransition,
+        color $baseTransition,
+        border $baseTransition;
+
+      &:focus {
+        border-color: $inputFocusBorder;
+      }
+
+      &:disabled {
+        color: $inputDisabledColor;
+        background-color: $inputDisabledBackground;
+      }
+    }
+  }
+
+  &__required-text {
+    float: right;
+    color: $inputDisabledColor;
+  }
+
+  &__input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__errors {
+    display: flex;
+    flex-direction: column;
+    padding-top: 5px;
+    color: $inputErrorBorder;
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "extends": [
+    "@nuxtjs/eslint-config-typescript",
+    "eslint:recommended",
+    "airbnb-base",
+    "plugin:vue/recommended"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "**/*.ts",
+        "**/*.vue",
+      ],
+      "parser": "vue-eslint-parser",
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser",
+      },
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+      ],
+      "rules": {
+        "@typescript-eslint/no-this-alias": [
+          "error",
+          {
+            "allowDestructuring": true,
+            "allowedNames": [
+              "self",
+              "vm",
+            ],
+          },
+        ],
+        "@typescript-eslint/camelcase": 0,
+        "@typescript-eslint/no-empty-interface": [
+          "error",
+          {
+            "allowSingleExtends": true,
+          }
+        ],
+        "@typescript-eslint/no-explicit-any": 0,
+        "no-unused-expressions": 0,
+        "@typescript-eslint/no-unused-expressions": 2,
+        "@typescript-eslint/prefer-optional-chain": 2,
+        "@typescript-eslint/no-unused-vars": 2,
+      }
+    }
+  ],
+  "rules": {
+    "vue/require-v-for-key": 0,
+    "linebreak-style": 0,
+    "no-new": 0,
+    "no-bitwise": [
+      "error", 
+      { 
+        "allow": ["~"]
+      }
+    ],
+    "import/no-unresolved": 0,
+    "import/no-extraneous-dependencies": 0,
+    "no-param-reassign": 0,
+    "no-irregular-whitespace": 0,
+    "class-methods-use-this": 0,
+    "prefer-object-spread": 0,
+    "arrow-parens": [
+      2,
+      "always",
+    ],
+  }
+}
