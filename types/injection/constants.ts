@@ -2,6 +2,7 @@ export type Content = {
   appName: string;
   nickName: string;
   fullName: string;
+  email: string;
 };
 
 export type Screens = {

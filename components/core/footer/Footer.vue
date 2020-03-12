@@ -1,18 +1,18 @@
 <template>
   <footer class="footer">
-    <div class="footer__wrapper main-container">
+    <div class="footer__wrapper">
       <div class="footer__info-container">
         <span class="footer__title">{{ title }}</span>
         <span class="footer__description">{{ description }}</span>
       </div>
       <div class="footer__contact-container">
-        <a :href="`tel:${contactPhoneNumber}?call`" class="footer__phone">
-          <span>{{ contactPhoneNumber }}</span>
+        <a :href="`mailto:${contactEmail}?subject=Обратная связь`" class="footer__contact">
+          <span>{{ nickName }}</span>
         </a>
         <div class="footer__link-container">
           <a
             v-for="(social, index) in socials"
-            :key="index"
+            :key="`footer-social-link-${index}`"
             :href="social.url"
             class="footer__social-link"
             target="_blank"
@@ -38,7 +38,11 @@ import { Social } from '~/types/injection/constants';
   },
 })
 export default class Footer extends Vue {
-  get contactPhoneNumber(): string {
+  get contactEmail(): string {
+    return this.$constants.content.email;
+  }
+
+  get nickName(): string {
     return this.$constants.content.nickName;
   }
 
@@ -93,13 +97,22 @@ export default class Footer extends Vue {
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 
-  &__phone {
+  &__contact {
     font-size: 18px;
+    margin: 0 15px 15px;
+    padding: 15px;
     width: 100%;
-    padding: 0 30px 30px;
-    border-bottom: 1px solid $grayFlash;
+    max-width: 132px;
+    text-align: center;
+    border-radius: 10px;
+    transition: color $baseTransition;
+
+    &:hover {
+      color: $active;
+    }
   }
 
   &__link-container {
@@ -107,6 +120,7 @@ export default class Footer extends Vue {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    border-top: 1px solid $grayFlash;
     width: 100%;
     padding: 10px 50px;
   }
@@ -116,10 +130,18 @@ export default class Footer extends Vue {
   }
 
   &__social-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 10px;
-    flex: 0 0 24px;
-    width: 24px;
-    height: 27px;
+    padding: 10px;
+    border-radius: 15px;
+
+    svg {
+      flex: 0 0 24px;
+      width: 24px;
+      height: 24px;
+    }
   }
 
   @media (min-width: $screenTablet) {
@@ -127,7 +149,8 @@ export default class Footer extends Vue {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      padding: 20px;
+      align-items: center;
+      padding: 25px 55px 15px;
     }
 
     &__info-container {
@@ -148,29 +171,32 @@ export default class Footer extends Vue {
 
     &__contact-container {
       display: flex;
-      flex-direction: column;
-      align-items: flex-end;
+      flex-direction: row;
+      justify-content: flex-end;
     }
 
-    &__phone {
-      max-width: 132px;
+    &__contact {
       font-size: 18px;
       margin: 0;
-      padding: 0;
       border: 0;
-      margin-bottom: 15px;
     }
 
     &__link-container {
       display: flex;
       justify-content: flex-end;
       align-items: center;
+      margin-left: 35px;
       padding: 0;
+      width: auto;
+      border-top: none;
     }
 
     &__social-link {
       margin: 0;
-      margin-left: 35px;
+
+      & + & {
+        margin-left: 35px;
+      }
     }
   }
 
@@ -180,7 +206,9 @@ export default class Footer extends Vue {
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      padding: 25px 55px 15px;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 1280px;
     }
 
     &__info-container {
@@ -204,11 +232,11 @@ export default class Footer extends Vue {
       justify-content: flex-end;
     }
 
-    &__phone {
+    &__contact {
       max-width: 132px;
       font-size: 18px;
       margin: 0;
-      padding: 0;
+      padding: 10px;
       border: 0;
     }
 
@@ -221,10 +249,6 @@ export default class Footer extends Vue {
 
     &__logo {
       display: block;
-    }
-
-    &__social-link {
-      margin-left: 35px;
     }
   }
 }
