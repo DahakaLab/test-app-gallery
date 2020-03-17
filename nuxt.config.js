@@ -63,7 +63,7 @@ module.exports = {
     fallback: true,
   },
   head: {
-    title: 'Перекресток',
+    title: 'Test app gallery',
     meta: [
       { charset: 'utf-8' },
       {

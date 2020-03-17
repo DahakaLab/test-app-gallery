@@ -1,10 +1,14 @@
 <template>
   <div class="gallery">
     <div v-if="isHaveImages">
-      Have images
+      <GalleryPicture
+        v-for="(picture, index) in gallary"
+        :key="`gallery-picture-${index}`"
+        :info="picture"
+      />
     </div>
     <div v-if="!isHaveImages">
-      Isn't have images
+      <GalleryFetch />
     </div>
   </div>
 </template>
@@ -13,8 +17,15 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { storeModules } from '~/store';
 import { GalleryImage } from '~/types/io-ts/galleryImages';
+import GalleryFetch from './GalleryFetch.vue';
+import GalleryPicture from './GalleryPicture.vue';
 
-@Component({})
+@Component({
+  components: {
+    GalleryFetch,
+    GalleryPicture,
+  },
+})
 export default class Gallery extends Vue {
   get gallary(): GalleryImage[] | undefined {
     return storeModules.gallery?.getGallary;
@@ -22,14 +33,6 @@ export default class Gallery extends Vue {
 
   get isHaveImages(): boolean {
     return (this.gallary !== undefined && this.gallary?.length > 0);
-  }
-
-  fetchImages(): void {
-    storeModules.gallery?.updateImagesInGallary('https://raw.githubusercontent.com/DahakaLab/json-test-data/master/galleryImages.json');
-  }
-
-  mounted(): void {
-    this.fetchImages();
   }
 }
 </script>
