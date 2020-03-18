@@ -52,6 +52,7 @@ export default class LayoutMain extends Vue {
     flex: 1 1 auto;
     width: 100%;
     height: auto;
+    padding: 40px 0;
     background-color: $background;
   }
 

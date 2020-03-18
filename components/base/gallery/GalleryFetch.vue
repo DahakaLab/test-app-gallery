@@ -22,6 +22,10 @@ export default class GalleryFetch extends Vue {
   buttonFetchImagesHandler(): void {
     this.fetchImages();
   }
+
+  mounted(): void {
+    this.fetchImages();
+  }
 }
 </script>
 
